@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packet Sniffer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Packet Sniffer</h1>
+    <form action="/start" method="post">
+        <button type="submit">Start Capture</button>
+    </form>
+    {% if packets_info %}
+    <h2>Captured Packets</h2>
+    <table>
+        <tr>
+            <th>Source IP</th>
+            <th>Destination IP</th>
+            <th>Size (bytes)</th>
+            <th>Protocol</th>
+        </tr>
+        {% for packet in packets_info %}
+        <tr>
+            <td>{{ packet.src_ip }}</td>
+            <td>{{ packet.dst_ip }}</td>
+            <td>{{ packet.size }}</td>
+            <td>{{ packet.protocol }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
