@@ -1,0 +1,66 @@
+/* styles.css */
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f0f8ff; /* Alice Blue */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #0044cc; /* Royal Blue */
+    text-align: center;
+    padding: 20px;
+    background-color: #e0f7fa; /* Light Cyan */
+    margin: 0;
+}
+
+form {
+    text-align: center;
+    margin: 20px;
+}
+
+button {
+    background-color: #00796b; /* Teal */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #004d40; /* Darker Teal */
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #ffffff; /* White */
+}
+
+table, th, td {
+    border: 1px solid #b0bec5; /* Light Blue Grey */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #0288d1; /* Light Blue */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #e1f5fe; /* Light Blue */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff; /* White */
+}
