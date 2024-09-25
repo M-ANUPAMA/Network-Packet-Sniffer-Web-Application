@@ -1,0 +1,47 @@
+from flask import Flask, render_template, redirect, url_for
+from scapy.all import sniff, IP
+import threading
+
+app = Flask(__name__)
+
+# Global variable to store packet details
+packets_info = []
+
+
+def packet_callback(packet):
+    if IP in packet:
+        src_ip = packet[IP].src
+        dst_ip = packet[IP].dst
+        packet_size = len(packet)
+        protocol = packet[IP].proto
+
+        # Append packet information to the list
+        packets_info.append({
+            'src_ip': src_ip,
+            'dst_ip': dst_ip,
+            'size': packet_size,
+            'protocol': protocol
+        })
+
+
+def start_sniffing():
+    # Capture 10 packets
+    sniff(prn=packet_callback, count=10, store=0)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html', packets_info=packets_info)
+
+
+@app.route('/start', methods=['POST'])
+def start_capture():
+    global packets_info
+    packets_info = []  # Clear previous packets
+    # Run packet capture in a separate thread
+    threading.Thread(target=start_sniffing).start()
+    return redirect(url_for('index'))
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5001)  # Use port 5001 or another available port
